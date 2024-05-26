@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Producto | Categoría de Productos
+{% endblock title %}
+
+{% block body_title %}
+    Producto - Categorías de Productos: Eliminar
+{% endblock body_title %}
+
+{% block content %}
+    <p class="fs-5  fst-italic ">¿Confirma eliminar "{{ object.nombre }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar</button>
+    </form>
+    <a href="{% url 'producto:index' %}">Volver al inicio de Producto</a>
+{% endblock content %}

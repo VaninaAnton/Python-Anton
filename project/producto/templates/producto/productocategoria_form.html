@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Producto | Categoría de Productos
+{% endblock title %}
+
+{% block body_title %}
+    {% if form.instance.pk %}
+        Producto - Categorías de Productos: Edición
+    {% else %}
+        Producto - Categorías de Productos: Creación
+    {% endif %}
+{% endblock body_title %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <button type="submit">Guardar</button>
+    </form>
+{% endblock content %}
