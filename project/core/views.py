@@ -9,6 +9,4 @@ def index(request):
     return render(request, "core/index.html")
 
 
-def sobre_nosotros(request):
-    return render(request, "core/sobre-nosotros.html")
 

@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LogoutView
 from django.urls import path
 
-from core.views import index, sobre_nosotros
+from core.views import index
 
 app_name = "core"
 
