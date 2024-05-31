@@ -9,44 +9,27 @@
 {% endblock body_title %}
 
 {% block content %}
-<a href="{% url 'core:index' %}" class="button">Inicio</a>
+
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        {% for producto in productos %}
+        <div class="col-md-4">
             <div class="card mb-4">
+                <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
                 <div class="card-body">
-                    <h5 class="card-title">Categorías de Productos</h5>
-                    <a href="{% url 'producto:productocategoria_list' %}" class="btn btn-primary">Lista de categorías de productos</a>
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">{{ producto.descripcion }}</p>
+                    <p class="card-text">Precio: ${{ producto.precio }}</p>
+                    <a href="{% url 'producto:detalle_producto' producto.id %}" class="btn btn-primary">Ver detalles</a>
+                    <form method="post" action="{% url 'carrito:agregar_producto' producto.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="cantidad" value="1">
+                        <button type="submit" class="btn btn-success">Agregar al carrito</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Crear Categoría de Productos</h5>
-                    <a href="{% url 'producto:productocategoria_create' %}" class="btn btn-primary">Crear categoría de productos</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Productos</h5>
-                    <a href="{% url 'producto:producto_list' %}" class="btn btn-primary">Lista de productos</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Crear Productos</h5>
-                    <a href="{% url 'producto:producto_create' %}" class="btn btn-primary">Crear de productos</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
-
 {% endblock content %}

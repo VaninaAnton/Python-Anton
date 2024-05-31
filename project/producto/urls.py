@@ -19,7 +19,6 @@ app_name = "producto"
 # VISTAS BASADAS EN FUNCIONES
 urlpatterns = [
     path("", index, name="index"),
-  
 ]
 
 # VISTAS BASADAS EN CLASES

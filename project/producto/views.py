@@ -2,7 +2,7 @@ from typing import Any
 
 from django.db.models import Q
 from django.db.models.query import QuerySet
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView,
@@ -20,13 +20,10 @@ def index(request):
     return render(request, "producto/index.html")
 
 
-# PRODUCTO CATEGORIA
-# LISTA
+
+# LIST
 class ProductoCategoriaList(ListView):
     model = ProductoCategoria
-    # context_object_name = "productocategoria"
-    # template_name = "producto/list.html"
-
     def get_queryset(self) -> QuerySet[Any]:
         queryset = super().get_queryset()
         busqueda = self.request.GET.get("busqueda")
@@ -37,32 +34,32 @@ class ProductoCategoriaList(ListView):
         return queryset
 
 
-# CREAR
+# CREATE
 class ProductoCategoriaCreate(CreateView):
     model = ProductoCategoria
     form_class = ProductoCategoriaForm
     success_url = reverse_lazy("producto:productocategoria_list")
 
 
-# DETALLE
+# DETAIL
 class ProductoCategoriaDetail(DetailView):
     model = ProductoCategoria
 
 
-# ACTUALIZAR
+# UPDATE
 class ProductoCategoriaUpdate(UpdateView):
     model = ProductoCategoria
     form_class = ProductoCategoriaForm
     success_url = reverse_lazy("producto:productocategoria_list")
 
 
-# ELIMINAR
+# DELETE
 class ProductoCategoriaDelete(DeleteView):
     model = ProductoCategoria
     success_url = reverse_lazy("producto:productocategoria_list")
 
 
-# PRODUCTO
+#PRODUCTO
 class ProductoList(ListView):
     model = Producto
 
