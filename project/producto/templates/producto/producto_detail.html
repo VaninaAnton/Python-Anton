@@ -9,14 +9,24 @@
 {% endblock body_title %}
 
 {% block content %}
-    <ul>
-        <li>Categoría: {{ object.categoria_id }}</li>
-        <li>Nombre: {{ object.nombre }}</li>
-        <li>Precio: {{ object.precio }}</li>
-        <li>Cantidad: {{ object.cantidad }}</li>
-        <li>Actualización: {{ object.fecha_actualizacion }}</li>
-    </ul>
-    <div>
-        <a href="{% url 'producto:producto_list' %}">Volver</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">{{ producto.descripcion }}</p>
+                    <p class="card-text">Precio: ${{ producto.precio }}</p>
+                    <form method="post" action="{% url 'carrito:agregar_producto' producto.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="cantidad" value="1">
+                        <button type="submit" class="btn btn-success">Agregar al carrito</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
 {% endblock content %}

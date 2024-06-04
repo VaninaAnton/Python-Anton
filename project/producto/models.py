@@ -1,38 +1,31 @@
 from django.db import models
-from django.utils import timezone
-
-
-class ProductoCategoria(models.Model):
-    """Categorías de productos"""
-
-    nombre = models.CharField(max_length=200, unique=True)
-    descripcion = models.TextField(
-        null=True,
-        blank=True,
-        verbose_name="descripción",
-    )
-
-    def __str__(self) -> str:
-        """Retorna una instancia del modelo en forma de cadena de texto"""
-        return self.nombre
-
-    class Meta:
-        verbose_name = "categoría de producto"
-        verbose_name_plural = "categorías de producto"
-
 
 class Producto(models.Model):
-    categoria_id = models.ForeignKey(ProductoCategoria, null=True, blank=True, on_delete=models.SET_NULL)
     nombre = models.CharField(max_length=200)
-    unidad_de_medida = models.CharField(max_length=200)
-    cantidad = models.FloatField()
+    descripcion = models.TextField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)
-    descripcion = models.TextField(null=True, blank=True, verbose_name="descripción")
-    fecha_actualizacion = models.DateField(null=True, blank=True, editable=False, default=timezone.now)
+    imagen = models.ImageField(upload_to='productos/')
 
-    def __str__(self) -> str:
-        return f"{self.nombre} ({self.unidad_de_medida}) ${self.precio:.2f}"
+    def __str__(self):
+        return self.nombre
 
-    class Meta:
-        verbose_name = "producto"
-        verbose_name_plural = "productos"
+# models.py en tu aplicación de carrito
+from django.conf import settings
+from django.db import models
+from productos.models import Producto
+
+class Carrito(models.Model):
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    productos = models.ManyToManyField(Producto, through='CarritoProducto')
+
+    def __str__(self):
+        return f"Carrito de {self.usuario}"
+
+class CarritoProducto(models.Model):
+    carrito = models.ForeignKey(Carrito, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.cantidad} x {self.producto.nombre} en {self.carrito}"
+

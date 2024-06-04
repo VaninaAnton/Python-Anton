@@ -9,46 +9,29 @@
 {% endblock body_title %}
 
 {% block content %}
-    <div class="container mt-5">
-        <div class="row mb-3">
-            <div class="col-lg-6">
-                <form action="{% url 'producto:producto_list' %}"
-                      method="get"
-                      class="input-group">
-                    <input type="text"
-                           name="busqueda"
-                           class="form-control"
-                           placeholder="Buscar...">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit">Buscar</button>
-                    </div>
-                </form>
+<div class="container">
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">{{ producto.descripcion }}</p>
+                    <p class="card-text">Precio: ${{ producto.precio }}</p>
+                    <a href="{% url 'productos:detalle_producto' producto.id %}" class="btn btn-primary">Ver detalles</a>
+                    <form method="post" action="{% url 'carrito:agregar_producto' producto.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="cantidad" value="1">
+                        <button type="submit" class="btn btn-success">Agregar al carrito</button>
+                    </form>
+                </div>
             </div>
         </div>
-        {% if object_list %}
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for object in object_list %}
-                            <tr>
-                                <td>{{ object.nombre }}</td>
-                                <td>${{ object.precio }}</td>
-                                <td>
-                                    <a href="{% url 'producto:producto_detail' object.id %}"
-                                       class="btn btn-info btn-sm">Detalle</a>
-                                    <a href="{% url 'producto:producto_update' object.id %}"
-                                       class="btn btn-warning btn-sm">Cambiar</a>
-                                    <a href="{% url 'producto:producto_delete' object.id %}"
-                                       class="btn btn-danger btn-sm">Borrar</a>
-                                </td>
-                            </tr>
+        {% endfor %}
+    </div>
+</div>
+
                         {% endfor %}
                     </tbody>
                 </table>
