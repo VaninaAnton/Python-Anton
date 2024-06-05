@@ -1,15 +1,23 @@
-{% extends 'core/base.html' %}
-
-{% block title %}
-    Cliente
-{% endblock title %}
-
-{% block body_title %}
-    Cliente
-{% endblock body_title %}
-
-{% block content %}
-    
-
-{% endblock content %}
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Empresa</title>
+</head>
+<body>
+    <h1>Bienvenido a Mi Empresa</h1>
+    <nav>
+        <a href="{% url 'home' %}">Inicio</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'consulta' %}">Mi Trabajo</a>
+            <a href="{% url 'logout' %}">Salir</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'registro' %}">Registro</a>
+        {% endif %}
+    </nav>
+    <h2>Sobre Nosotros</h2>
+    <p>Información sobre la empresa.</p>
+    <h2>Contacto</h2>
+    <p>Datos de contacto de la empresa.</p>
+</body>
+</html>

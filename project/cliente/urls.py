@@ -1,10 +1,10 @@
 from django.urls import path
-
-from cliente.views import cliente_list, index
-
-app_name = "cliente"
+from .views import home, registro, login_view, logout_view, consulta
 
 urlpatterns = [
-    path("", index, name="index"),
-    path("cliente/list", cliente_list, name="cliente_list"),
+    path('', home, name='home'),
+    path('registro/', registro, name='registro'),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
+    path('consulta/', consulta, name='consulta'),
 ]

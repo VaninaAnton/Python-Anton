@@ -12,7 +12,9 @@ class Producto(models.Model):
 # models.py en tu aplicación de carrito
 from django.conf import settings
 from django.db import models
-from productos.models import Producto
+from productos.models import Productocd D:\Vanina\coderhouse\python\python\project
+python manage.py startapp carrito
+
 
 class Carrito(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
