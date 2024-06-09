@@ -11,68 +11,52 @@
 
 {% block content %}
 <div class="container">
-    <h2 class="mt-5">Datos del Cliente</h2>
-    <form method="post" enctype="multipart/form-data" action="" class="mt-4">
-        {% csrf_token %}
-        <div class="row mb-3">
-            <label for="id_nombre" class="col-sm-2 col-form-label">Nombre:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="id_nombre" name="nombre" value="{{ cliente.nombre }}">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h2 class="card-title">Datos del Cliente</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.nombre.label_tag }}
+                            {{ form.nombre }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.apellido.label_tag }}
+                            {{ form.apellido }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.telefono.label_tag }}
+                            {{ form.telefono }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.fecha_nacimiento.label_tag }}
+                            {{ form.fecha_nacimiento }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.contrasena.label_tag }}
+                            {{ form.contrasena }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.pais_origen.label_tag }}
+                            {{ form.pais_origen }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.foto_perfil.label_tag }}
+                            {{ form.foto_perfil }}
+                        </div>
+                        <button type="submit" class="btn btn-info">Guardar cambios</button>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="row mb-3">
-            <label for="id_apellido" class="col-sm-2 col-form-label">Apellido:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="id_apellido" name="apellido" value="{{ cliente.apellido }}">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="id_email" class="col-sm-2 col-form-label">Email:</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" id="id_email" name="email" value="{{ cliente.email }}">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="id_telefono" class="col-sm-2 col-form-label">Teléfono:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="id_telefono" name="telefono" value="{{ cliente.telefono }}">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="id_fecha_nacimiento" class="col-sm-2 col-form-label">Fecha de Nacimiento:</label>
-            <div class="col-sm-10">
-                <input type="date" class="form-control" id="id_fecha_nacimiento" name="fecha_nacimiento" value="{{ cliente.fecha_nacimiento }}">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="id_contrasena" class="col-sm-2 col-form-label">Contraseña:</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="id_contrasena" name="contrasena" value="{{ cliente.contrasena }}">
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="id_pais_origen" class="col-sm-2 col-form-label">País de Origen:</label>
-            <div class="col-sm-10">
-                <select class="form-select" id="id_pais_origen" name="pais_origen">
-                    {% for pais in paises %}
-                        <option value="{{ pais.id }}" {% if cliente.pais_origen_id == pais.id %}selected{% endif %}>{{ pais.nombre }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <label for="id_foto_perfil" class="col-sm-2 col-form-label">Foto de Perfil:</label>
-            <div class="col-sm-10">
-                <input type="file" class="form-control" id="id_foto_perfil" name="foto_perfil">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-10 offset-sm-2">
-                <button type="submit" class="btn btn-info">Guardar cambios</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
-
 {% endblock content %}
-

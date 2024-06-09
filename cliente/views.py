@@ -30,14 +30,21 @@ class CustomLoginView(LoginView):
 
 @login_required
 def index(request):
-    try:
-        cliente = request.user 
+    if request.user.is_authenticated:
+        cliente = request.user
+        if request.method == 'POST':
+            form = ClienteForm(request.POST, request.FILES, instance=cliente)
+            if form.is_valid():
+                form.save()
+        else:
+            form = ClienteForm(instance=cliente)
+
         context = {
+            'form': form,
             'cliente': cliente,
-            'user': request.user,
         }
         return render(request, 'cliente/index.html', context)
-    except ObjectDoesNotExist:
+    else:
         return HttpResponseRedirect(reverse('core:register'))
 
 
