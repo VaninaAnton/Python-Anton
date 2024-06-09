@@ -7,7 +7,7 @@ class Pais(models.Model):
     def __str__(self):
         return self.nombre
 
-class CustomUser(AbstractUser): 
+class CustomUser(AbstractUser):
     telefono = models.CharField(max_length=20, default="")
     fecha_nacimiento = models.DateField(default='2000-01-01')
     pais_origen = models.ForeignKey(Pais, on_delete=models.SET_NULL, null=True, blank=True)

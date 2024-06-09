@@ -31,7 +31,7 @@ class CustomLoginView(LoginView):
 @login_required
 def index(request):
     try:
-        cliente = request.user.cliente
+        cliente = request.user 
         context = {
             'cliente': cliente,
             'user': request.user,
@@ -39,6 +39,7 @@ def index(request):
         return render(request, 'cliente/index.html', context)
     except ObjectDoesNotExist:
         return HttpResponseRedirect(reverse('core:register'))
+
 
 def register(request):
     if request.method == 'POST':

@@ -18,7 +18,6 @@ def nosotros_view(request):
 class CustomLoginView(LoginView):
     redirect_authenticated_user = True
     template_name = 'core/login.html'
-
     success_url = reverse_lazy('cliente:index')
 
     def get_success_url(self):
@@ -72,6 +71,8 @@ def consulta_view(request):
 def consulta_success_view(request):
     return render(request, 'core/consulta_success.html')
 
-def logout_view(request):
-    logout(request)  # Cerrar sesión
-    return redirect('core:index')  # Redirigir al usuario a la página principal después del logout
+class CustomLogoutView(LogoutView):
+    success_url = reverse_lazy('core:logout')
+
+    def get_success_url(self):
+        return reverse_lazy('core:index')
