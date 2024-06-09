@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+    Cliente
+{% endblock title %}
+
+{% block body_title %}
+    Lista países
+{% endblock body_title %}
+
+{% block content %}
+
+<h2>Lista de Países</h2>
+<ul>
+    {% for pais in paises %}
+    <li>{{ pais.nombre }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock content%}

@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Cliente
 
+
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
@@ -19,4 +20,4 @@ class UserRegistrationForm(forms.ModelForm):
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
-        fields = ['nombre', 'apellido', 'nacimiento', 'pais_origen_id', 'email', 'telefono']
+        fields = ['nombre', 'apellido', 'email', 'telefono', 'fecha_nacimiento', 'contrasena', 'pais_origen', 'foto_perfil']

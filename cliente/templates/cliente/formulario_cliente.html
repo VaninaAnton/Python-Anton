@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+    Cliente
+{% endblock title %}
+
+{% block body_title %}
+    Fromulario cliente
+{% endblock body_title %}
+
+{% block content %}
+
+<h2>Datos del Cliente</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar cambios</button>
+
+    {% endblock content%}

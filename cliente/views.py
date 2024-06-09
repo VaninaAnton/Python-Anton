@@ -4,8 +4,6 @@ from cliente.forms import ClienteForm
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from .forms import UserRegistrationForm, ClienteForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
@@ -34,7 +32,12 @@ class CustomLoginView(LoginView):
 
 from django.contrib.auth.decorators import login_required
 
+from django.contrib.auth.decorators import login_required
+
 @login_required
+def index(request):
+    cliente = Cliente.objects.get(user=request.user)
+    return render(request, 'cliente/index.html', {'cliente': cliente})
 def index(request):
     try:
         cliente = request.user.cliente
@@ -49,20 +52,39 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
-        user_form = UserRegistrationForm(request.POST)
         cliente_form = ClienteForm(request.POST, request.FILES)
-        if user_form.is_valid() and cliente_form.is_valid():
-            user = user_form.save(commit=False)
-            user.set_password(user_form.cleaned_data['password'])
-            user.save()
+        if  cliente_form.is_valid():
+            cliente.set_password(user_form.cleaned_data['password'])
+            cliente.save()
             cliente = cliente_form.save(commit=False)
             cliente.user = user
             cliente.save()
             return redirect('login')
     else:
-        user_form = UserRegistrationForm()
         cliente_form = ClienteForm()
     return render(request, 'core/register.html', {
-        'user_form': user_form,
         'cliente_form': cliente_form
     })
+
+
+def crear_actualizar_cliente(request, cliente_id=None):
+    if cliente_id:
+        cliente = Cliente.objects.get(id=cliente_id)
+    else:
+        cliente = None
+
+    if request.method == 'POST':
+        form = ClienteForm(request.POST, request.FILES, instance=cliente)
+        if form.is_valid():
+            form.save()
+            return redirect('ruta_de_redireccion')
+    else:
+        form = ClienteForm(instance=cliente)
+
+    return render(request, 'formulario_cliente.html', {'form': form, 'cliente': cliente})
+
+def listar_paises(request):
+    paises = Pais.objects.all()
+    return render(request, 'lista_paises.html', {'paises': paises})
+
+
