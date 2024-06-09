@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Producto | Categorías de Productos
+{% endblock title %}
+
+{% block body_title %}
+    Producto - Categorías de Productos: Vista en Detalle
+{% endblock body_title %}
+
+{% block content %}
+    <ul>
+        <li>Nombre: {{ object.nombre }}</li>
+        <li>Descripción: {{ object.descripcion }}</li>
+    </ul>
+    <div>
+        <a href="{% url 'producto:productocategoria_list' %}">Volver</a>
+    </div>
+{% endblock content %}

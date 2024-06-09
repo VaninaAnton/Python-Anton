@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Cliente | Cliente: listado
+{% endblock title %}
+
+{% block body_title %}
+    Cliente: Listado de clientes
+{% endblock body_title %}
+
+{% block content %}
+    {% for cliente in clientes %}
+        <ul>
+            <li><h3>{{ cliente }}</h3></li>
+            <p>Nacimiento: {{ cliente.nacimiento }}</p>
+            {% if cliente.pais_origen_id %}
+                <p>País de origen: {{ cliente.pais_origen_id }}</p>
+            {% else %}
+                <p>País de origen: "No hay registro"</p>
+            {% endif %}
+        </ul>
+    {% endfor %}
+{% endblock content %}
+

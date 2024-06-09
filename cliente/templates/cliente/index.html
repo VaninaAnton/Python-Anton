@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Cliente
+{% endblock title %}
+
+{% block body_title %}
+    App Cliente
+{% endblock body_title %}
+
+{% block content %}
+    <div>
+        <a href="{% url 'cliente:cliente_list' %}">Lista de clientes</a>
+    </div>
+{% endblock content %}
