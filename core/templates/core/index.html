@@ -47,47 +47,46 @@ Más de 50 años ofreciendo el mejor servicio para tus vehículos
         </div>
     </div>
 
-    <!-- Contact Form and Map-->
-    <div class="row gx-4 gx-lg-5 my-5">
-        <!-- Contact Form -->
-        <div class="col-md-6">
-            <h2>Envíanos tu consulta</h2>
-            <form>
-                <div class="form-group mb-3">
-                    <label for="nombreApellido">Nombre y Apellido</label>
-                    <input type="text" class="form-control" id="nombreApellido" placeholder="Ingresa tu nombre y apellido">
+    <div class="container my-5">
+        <div class="row gx-4 gx-lg-5">
+            <!-- Contact Form -->
+            <div class="col-lg-6">
+                <form method="POST" action="{% url 'core:consulta' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nombreApellido" class="form-label">Nombre y Apellido</label>
+                        <input type="text" class="form-control" id="nombreApellido" name="nombre_apellido" placeholder="Ingresa tu nombre y apellido">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingresa tu teléfono">
+                    </div>
+                    <div class="mb-3">
+                        <label for="consulta" class="form-label">Consulta</label>
+                        <textarea class="form-control" id="consulta" name="consulta" rows="4" placeholder="Ingresa tu consulta"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-info">Enviar</button>
+                </form>
+            </div>
+    
+            <!-- Map -->
+            <div class="col-lg-6 mt-4 mt-lg-0">
+                <div class="ubicacion">
+                    <iframe class="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1552.2802010066612!2d-65.18001858032727!3d-31.946058238043445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942cd567eb01fbbd%3A0x5f66a5595d18a286!2sAnton%20Rectificaciones%20SRL!5e0!3m2!1ses!2sar!4v1685313690636!5m2!1ses!2sar" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" title="mapa"></iframe>
+                    <h6 class="mt-3">Avenida Belgrano 777, Villa Dolores, Córdoba - Argentina</h6>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Ingresa tu email">
-                </div>
-                <div class="form-group mb-3">
-                    <label for="telefono">Teléfono</label>
-                    <input type="tel" class="form-control" id="telefono" placeholder="Ingresa tu teléfono">
-                </div>
-                <div class="form-group mb-3">
-                    <label for="consulta">Consulta</label>
-                    <textarea class="form-control" id="consulta" rows="4" placeholder="Ingresa tu consulta"></textarea>
-                </div>
-                <button type="submit" class="btn btn-info">Enviar</button>
-            </form>
-        </div>
-
-        <!-- Map -->
-        <div class="col-md-6">
-            <h3>Donde estamos</h3>
-            <div class="ubicacion">
-                <iframe class="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1552.2802010066612!2d-65.18001858032727!3d-31.946058238043445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942cd567eb01fbbd%3A0x5f66a5595d18a286!2sAnton%20Rectificaciones%20SRL!5e0!3m2!1ses!2sar!4v1685313690636!5m2!1ses!2sar" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" title="mapa"></iframe>
-                <h6 class="mt-3">Avenida Belgrano 777, Villa Dolores, Córdoba - Argentina</h6>
             </div>
         </div>
     </div>
+    
+</div>
 </div>
 
 <!-- Leaflet CSS and JS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-
-    
 {% endblock content %}

@@ -1,24 +1,20 @@
 {% extends 'core/base.html' %}
 
 {% block title %}
-    Cliente | Cliente: listado
+    Lista de Clientes
 {% endblock title %}
 
 {% block body_title %}
-    Cliente: Listado de clientes
+    Lista de Clientes
 {% endblock body_title %}
 
 {% block content %}
-    {% for cliente in clientes %}
-        <ul>
-            <li><h3>{{ cliente }}</h3></li>
-            <p>Nacimiento: {{ cliente.nacimiento }}</p>
-            {% if cliente.pais_origen_id %}
-                <p>País de origen: {{ cliente.pais_origen_id }}</p>
-            {% else %}
-                <p>País de origen: "No hay registro"</p>
-            {% endif %}
-        </ul>
-    {% endfor %}
+<a href="{% url 'cliente:cliente_list' %}">Ver lista de clientes</a>
+    <ul>
+        {% for cliente in clientes %}
+            <li>{{ cliente.nombre }} {{ cliente.apellido }}</li>
+        {% endfor %}
+    </ul>
 {% endblock content %}
+
 

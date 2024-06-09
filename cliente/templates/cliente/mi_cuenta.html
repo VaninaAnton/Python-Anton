@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Cliente
+{% endblock title %}
+
+{% block body_title %}
+    App Cliente
+{% endblock body_title %}
+
+{% block content %}
+    <h2>Datos del Cliente</h2>
+    <form method="post" enctype="multipart/form-data" action="{% url 'cliente:mi_cuenta' %}">
+        {% csrf_token %}
+        <label for="id_nombre">Nombre:</label>
+        <input type="text" id="id_nombre" name="nombre" value="{{ cliente.nombre }}"><br>
+        <label for="id_apellido">Apellido:</label>
+        <input type="text" id="id_apellido" name="apellido" value="{{ cliente.apellido }}"><br>
+        <label for="id_email">Email:</label>
+        <input type="email" id="id_email" name="email" value="{{ cliente.email }}"><br>
+        <label for="id_telefono">Teléfono:</label>
+        <input type="text" id="id_telefono" name="telefono" value="{{ cliente.telefono }}"><br>
+        <label for="id_fecha_nacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="id_fecha_nacimiento" name="fecha_nacimiento" value="{{ cliente.fecha_nacimiento }}"><br>
+        <label for="id_contrasena">Contraseña:</label>
+        <input type="password" id="id_contrasena" name="contrasena" value="{{ cliente.contrasena }}"><br>
+        <label for="id_pais_origen">País de Origen:</label>
+        <select id="id_pais_origen" name="pais_origen">
+            {% for pais in paises %}
+                <option value="{{ pais.id }}" {% if cliente.pais_origen_id == pais.id %}selected{% endif %}>{{ pais.nombre }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="id_foto_perfil">Foto de Perfil:</label>
+        <input type="file" id="id_foto_perfil" name="foto_perfil"><br>
+        <button type="submit">Guardar cambios</button>
+    </form>
+{% endblock content %}
+

@@ -1,11 +1,11 @@
 {% extends 'core/base.html' %}
 
 {% block title %}
-    Caja de Pandora
+    Rectificaciones Anton
 {% endblock title %}
 
 {% block body_title %}
-    Login
+    Inicio de Sesión
 {% endblock body_title %}
 
 {% block content %}
@@ -15,7 +15,7 @@
             {{ form.as_table }}
         </table>
         <input type="hidden" name="next" value="{% url 'core:index' %}">
-        <button type="submit" class="btn btn-primary ">Iniciar Sesión</button>
-        <a href="{% url 'core:index' %}" class="btn btn-secondary ">Cancelar</a>
+        <button type="submit" class="btn btn-outline-info">Iniciar Sesión</button>
+        <a href="{% url 'core:index' %}" class="btn btn-outline-secondary ">Cancelar</a>
     </form>
 {% endblock content %}
