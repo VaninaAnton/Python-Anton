@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+    Rectificaciones Anton
+{% endblock title %}
+
+{% block body_title %}
+Nosotros
+{% endblock body_title %}
+
+{% block content %}
+<section class="container py-5">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <img src="{% static 'core/img/local-inicio.webp' %}" class="img-fluid rounded" alt="local-inicio">
+    </div>
+    <div class="col-md-6 mt-4 mt-md-0">
+      <p class="lead">
+        Rectificaciones Antón fue fundada por Humberto Claudio Antón hace más de 50 años para satisfacer las necesidades de rectificación y reparación de motores del Valle de Traslasierras. Años más tarde, sus hijos comenzaron a trabajar con él mientras la empresa crecía de forma acelerada.
+        Durante su crecimiento, fueron incorporando nuevas maquinarias y tecnología para brindar un mejor servicio; como así también agregaron la venta de repuestos para motores nacionales o importados, nafteros o gasoleros. Además, cuenta con una línea completa de lubricantes ELF y todo lo necesario para tu motor.
+        En su moderno taller de rectificación, se realiza la reparación total, armado de motores de distintos tipos, también se dispone de un banco de pruebas el cual permite garantizar un perfecto funcionamiento del motor.
+      </p>
+    </div>    
+  </div>
+</section>
+
+<section class="container-fluid bg-light py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Nuestro Equipo</h2>
+    <div class="row">
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="text-center">
+          <img src="{% static 'core/img/icono-persona.webp' %}" class="img-fluid rounded-circle mb-3" alt="Humberto Anton" width="150px"> 
+          <h6 class="display-6">Humberto Anton</h6>
+          <h6 class="display-7">Socio</h6> 
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="text-center">
+          <img src="{% static 'core/img/icono-persona.webp' %}" class="img-fluid rounded-circle mb-3" alt="Claudio Anton" width="150px">
+          <h6 class="display-6">Claudio Anton</h6>
+          <h6 class="display-7">Socio</h6>  
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="text-center">
+          <img src="{% static 'core/img/icono-persona.webp' %}" class="img-fluid rounded-circle mb-3" alt="Nombre" width="150px">
+          <h6 class="display-6">Nombre</h6>
+          <h6 class="display-7">Cargo</h6>   
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="text-center">
+          <img src="{% static 'core/img/icono-persona.webp' %}" class="img-fluid rounded-circle mb-3" alt="Nombre" width="150px">
+          <h6 class="display-6">Nombre</h6>
+          <h6 class="display-7">Cargo</h6>  
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
