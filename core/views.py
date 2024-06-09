@@ -17,11 +17,13 @@ def nosotros_view(request):
 
 class CustomLoginView(LoginView):
     redirect_authenticated_user = True
-    success_url = reverse_lazy('cliente:index')  # Redirige a la página del cliente después del inicio de sesión
+    template_name = 'core/login.html'
 
+    success_url = reverse_lazy('cliente:index')
 
     def get_success_url(self):
-        return reverse_lazy('core:index')  # Redirige a la página de inicio después del inicio de sesión
+        return reverse_lazy('core:index')
+
 
 def register(request):
     if request.method == 'POST':

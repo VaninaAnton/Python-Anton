@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Pais(models.Model):
     nombre = models.CharField(max_length=50, unique=True)
@@ -10,20 +11,18 @@ class Pais(models.Model):
         verbose_name = "país"
         verbose_name_plural = "países"
 
-
 class Cliente(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     nombre = models.CharField(max_length=150)
     apellido = models.CharField(max_length=150)
-    email = models.EmailField()
-    telefono = models.CharField(max_length=15)
-    fecha_nacimiento = models.DateField(null=True, blank=True)
-    contrasena = models.CharField(max_length=150)  # Esto puede no ser seguro, considera usar un campo más seguro como PasswordField
-    pais_origen = models.ForeignKey(
+    nacimiento = models.DateField(null=True, blank=True)
+    pais_origen_id = models.ForeignKey(
         Pais, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="país de origen"
     )
-    foto_perfil = models.ImageField(upload_to='perfil/', null=True, blank=True)
+    email = models.EmailField(default='default@example.com')  
+    telefono = models.CharField(max_length=15, null=True)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.apellido}, {self.nombre}"
 
     class Meta:

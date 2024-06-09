@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block title %}
     Lista de Clientes
@@ -10,11 +11,9 @@
 
 {% block content %}
 <a href="{% url 'cliente:cliente_list' %}">Ver lista de clientes</a>
-    <ul>
-        {% for cliente in clientes %}
-            <li>{{ cliente.nombre }} {{ cliente.apellido }}</li>
-        {% endfor %}
-    </ul>
+<ul>
+    {% for cliente in clientes %}
+        <li><a href="{% url 'cliente:cliente_detail' cliente.id %}">{{ cliente.nombre }} {{ cliente.apellido }}</a></li>
+    {% endfor %}
+</ul>
 {% endblock content %}
-
-

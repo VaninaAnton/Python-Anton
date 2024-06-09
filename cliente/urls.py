@@ -1,9 +1,11 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from . import views
+
+app_name = "cliente"
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('cliente.urls', namespace='cliente')),  
-    path("list/", cliente_list, name="cliente_list"),
-    path("detail/", cliente_detail, name="cliente_detail"),
+    path('', views.index, name='index'),
+    path('list/', views.cliente_list, name='cliente_list'), 
+    path('detail/<int:cliente_id>/', views.cliente_detail, name='cliente_detail'), 
+    path('register/', views.register, name='register'),
 ]
