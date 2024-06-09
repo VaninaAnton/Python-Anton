@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 
+
 class ProductoCategoria(models.Model):
     """Categorías de productos"""
 
