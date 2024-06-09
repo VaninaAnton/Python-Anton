@@ -126,3 +126,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'  # Página a la que redirigir después de iniciar sesión
+
+AUTH_USER_MODEL = 'cliente.CustomUser'

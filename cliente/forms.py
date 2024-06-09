@@ -1,15 +1,11 @@
 from django import forms
-from django.contrib.auth.models import User
-from .models import Cliente
+from .models import CustomUser
 
 
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
-
     class Meta:
-        model = User
-        fields = ('username', 'first_name', 'last_name', 'email')
+        model = CustomUser 
+        fields = ['username', 'email', 'password'] 
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -19,5 +15,5 @@ class UserRegistrationForm(forms.ModelForm):
 
 class ClienteForm(forms.ModelForm):
     class Meta:
-        model = Cliente
-        fields = ['nombre', 'apellido', 'email', 'telefono', 'fecha_nacimiento', 'contrasena', 'pais_origen', 'foto_perfil']
+        model = CustomUser
+        fields = ['email', 'telefono', 'fecha_nacimiento', 'pais_origen', 'foto_perfil']
