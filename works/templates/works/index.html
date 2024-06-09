@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+    Rectificaciones Anton
+{% endblock title %}
+
+{% block body_title %}
+Mis trabajos
+{% endblock body_title %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Trabajos en Curso</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Código</th>
+                    <th>Estado</th>
+                    <th>Fecha de Ingreso</th>
+                    <th>Fecha de Retiro</th>
+                    <th>Presupuesto</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trabajo in trabajos_en_curso %}
+                <tr>
+                    <td>{{ trabajo.codigo }}</td>
+                    <td>{{ trabajo.estado }}</td>
+                    <td>{{ trabajo.fecha_ingreso }}</td>
+                    <td>{{ trabajo.fecha_retiro }}</td>
+                    <td>{{ trabajo.presupuesto }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Trabajos Finalizados</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Código</th>
+                    <th>Fecha de Retiro</th>
+                    <th>Observaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trabajo in trabajos_finalizados %}
+                <tr>
+                    <td>{{ trabajo.codigo }}</td>
+                    <td>{{ trabajo.fecha_retiro }}</td>
+                    <td>{{ trabajo.observaciones }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

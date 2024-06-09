@@ -36,12 +36,12 @@
                     <a class="nav-link" href="{% url 'core:nosotros' %}">Nosotros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Producto</a> <!-- Agrega aquí la URL correspondiente -->
+                    <a class="nav-link" href="{% url 'works:trabajos' %}">Mis Trabajos</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'cliente:index' %}">Mi Cuenta</a>
-                </li>
+                </li>              
                 <li class="nav-item">
                     <a class="nav-link text-bg-info">{{ user.username }}</a>
                 </li>

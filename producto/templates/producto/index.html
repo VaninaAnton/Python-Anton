@@ -1,51 +1,30 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block title %}
-    Producto
+    Rectificaciones Anton
 {% endblock title %}
 
 {% block body_title %}
-    App Producto
+Mis trabajos
 {% endblock body_title %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Categorías de Productos</h5>
-                    <a href="{% url 'producto:productocategoria_list' %}" class="btn btn-primary">Lista de categorías de productos</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Crear Categoría de Productos</h5>
-                    <a href="{% url 'producto:productocategoria_create' %}" class="btn btn-primary">Crear categoría de productos</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Productos</h5>
-                    <a href="{% url 'producto:producto_list' %}" class="btn btn-primary">Lista de productos</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Crear Productos</h5>
-                    <a href="{% url 'producto:producto_create' %}" class="btn btn-primary">Crear de productos</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <h2>Trabajos en Curso</h2>
+    <ul>
+        {% for trabajo in trabajos_en_curso %}
+            <li>{{ trabajo.nombre_trabajo }} - Fecha de entrada: {{ trabajo.fecha_entrada }}</li>
+        {% empty %}
+            <li>No hay trabajos en curso.</li>
+        {% endfor %}
+    </ul>
 
+    <h2>Trabajos Pasados</h2>
+    <ul>
+        {% for trabajo in trabajos_pasados %}
+            <li>{{ trabajo.nombre_trabajo }} - Fecha de entrada: {{ trabajo.fecha_entrada }}, Fecha de retiro: {{ trabajo.fecha_retiro }}</li>
+        {% empty %}
+            <li>No hay trabajos pasados.</li>
+        {% endfor %}
+    </ul>
 {% endblock content %}
